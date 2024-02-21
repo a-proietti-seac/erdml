@@ -2,8 +2,19 @@ name: "release"
 
 on:
   push:
+<<<<<<< HEAD
     tags:
       - "v*"
+=======
+    branches:
+      - "master"
+      paths:
+        - ErdmlLexer.g4
+        - ErdmlParser.g4
+        - examples/
+        tags:
+          - "v*"
+>>>>>>> refs/remotes/origin/master
       
 jobs:
   release:
