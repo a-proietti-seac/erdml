@@ -1,0 +1,38 @@
+name: "release"
+
+on:
+  push:
+    branches:
+      - "master"
+    tags:
+      - "v*"
+    
+jobs:
+  release:
+    name: "Release"
+    runs-on: "ubuntu-latest"
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Maven Action
+        uses: s4u/setup-maven-action@v1.12.0
+
+      - name: Test Examples
+        run: mvn test
+      
+      - name: Genrate Artifacts
+        run: mvn package
+
+      - uses: "marvinpinto/action-automatic-releases@latest"
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          prerelease: true
+          title: "Stable Build"
+          files: |
+            target/Erdml.jar
+            ErdmlLexer.g4
+            ErdmlParser.g4
+
+          
