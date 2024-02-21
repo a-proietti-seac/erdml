@@ -27,7 +27,6 @@ jobs:
       - uses: "marvinpinto/action-automatic-releases@latest"
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          prerelease: true
           title: "Stable Build"
           files: |
             target/Erdml.jar
