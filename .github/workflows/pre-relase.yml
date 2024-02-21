@@ -4,14 +4,14 @@ on:
   push:
     branches:
       - "master"
-      paths:
-        - ErdmlLexer.g4
-        - ErdmlParser.g4
-        - examples/
+    paths:
+      - ErdmlLexer.g4
+      - ErdmlParser.g4
+      - examples/
 
 jobs:
   pre-release:
-    name: "Pre Release"`
+    name: "Pre Release"
     runs-on: "ubuntu-latest"
 
     steps:

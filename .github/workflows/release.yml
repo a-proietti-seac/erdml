@@ -2,14 +2,8 @@ name: "release"
 
 on:
   push:
-    branches:
-      - "master"
-      paths:
-        - ErdmlLexer.g4
-        - ErdmlParser.g4
-        - examples/
-        tags:
-          - "v*"
+    tags:
+      - "v*"
       
 jobs:
   release:
