@@ -1,4 +1,5 @@
 name: "pre-release"
+permissions: write-all
 
 on:
   push:
