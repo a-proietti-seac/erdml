@@ -9,6 +9,21 @@ on:
       - ErdmlLexer.g4
       - ErdmlParser.g4
       - examples/
+  workflow_dispatch:
+    inputs:
+      logLevel:
+        description: 'Log level'
+        required: true
+        default: 'warning'
+        type: choice
+        options:
+          - info
+          - warning
+          - debug
+      tags:
+        description: 'Test scenario tags'
+        required: false
+        type: boolean
 
 jobs:
   pre-release:
