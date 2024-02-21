@@ -1,0 +1,3 @@
+TABLE User { 
+	username varchar [UNIQUE]
+}

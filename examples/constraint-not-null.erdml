@@ -1,0 +1,3 @@
+TABLE Users { 
+	username varchar [not null]
+}

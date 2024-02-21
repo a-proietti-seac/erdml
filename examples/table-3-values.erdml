@@ -1,0 +1,3 @@
+TABLE ct.dw.users { 
+	id uuid
+}
