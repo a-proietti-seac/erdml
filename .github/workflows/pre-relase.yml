@@ -7,6 +7,7 @@ on:
     paths:
       - ErdmlLexer.g4
       - ErdmlParser.g4
+      - examples/
 
 jobs:
   pre-release:
