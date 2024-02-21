@@ -21,6 +21,7 @@ PRIMARY_KEY: 'PRIMARY KEY' | 'PK';
 NOT_NULL: 'NOT NULL';
 UNIQUE: 'UNIQUE';
 
+
 C_NOTES: NOTE COLON (' ')? '"' ~'"'* '"';
 
 TableAttribute: NOTE;
