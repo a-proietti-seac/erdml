@@ -84,9 +84,9 @@ quoted: STRING_LITERAL;
 istring: unquoted | quoted;
 istringList : LR_SBRACKET unquoted (COMMA istring)* RR_SBRACKET;
 
-catalogId : (istring '.')? schemaId;
-schemaId : (istring '.')? tableId;
-tableId : (istring '.')? columnId;
+catalogId : istring? ('.' schemaId)?;
+schemaId : istring? ('.' tableId)?;
+tableId : istring? ('.' columnId)?;
 columnId
     : istringList
     | istring
