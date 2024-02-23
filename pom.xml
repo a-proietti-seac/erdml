@@ -50,7 +50,7 @@
 				<configuration>
 					<verbose>false</verbose>
 					<showTree>false</showTree>
-					<entryPoint>parse</entryPoint>
+					<entryPoint>root</entryPoint>
 					<grammarName>Erdml</grammarName>
 					<packageName></packageName>
 					<exampleFiles>examples/</exampleFiles>
