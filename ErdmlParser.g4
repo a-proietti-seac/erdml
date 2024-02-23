@@ -29,7 +29,7 @@ tableStatement
     RR_CBRACKET
     ;
 
-tableName : catalogId;
+tableName : tableCatalogId;
 tableNote : multiLineComment;
 
 columnStatement : columnName columnType (columnComment)?;
@@ -54,8 +54,8 @@ refStatement
     ;
     
 refName : istring;
-refFrom : catalogId;
-refTo : catalogId;
+refFrom : refCatalogId;
+refTo : refCatalogId;
 
 refType
     : oneToMany 
@@ -84,10 +84,16 @@ quoted: STRING_LITERAL;
 istring: unquoted | quoted;
 istringList : LR_SBRACKET unquoted (COMMA istring)* RR_SBRACKET;
 
-catalogId : istring? ('.' schemaId)?;
-schemaId : istring? ('.' tableId)?;
-tableId : istring? ('.' columnId)?;
-columnId
+tableCatalogId : (istring '.')? tableSchemaId ;
+tableSchemaId : (istring '.')? tableTableId ;
+tableTableId
+    : istring
+    ;
+
+refCatalogId : (istring '.')? refSchemaId;
+refSchemaId : (istring '.')? refTableId;
+refTableId : (istring '.')? refColumnId;
+refColumnId
     : istringList
     | istring
     ;
