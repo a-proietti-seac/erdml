@@ -22,9 +22,6 @@ RR_CBRACKET         : '}';
 COMMA              : ',';
 SEMI               : ';';
 AT_SIGN            : '@';
-ZERO_DECIMAL       : '0';
-ONE_DECIMAL        : '1';
-TWO_DECIMAL        : '2';
 SINGLE_QUOTE_SYMB  : '\'';
 DOUBLE_QUOTE_SYMB  : '"';
 REVERSE_QUOTE_SYMB : '`';
@@ -35,8 +32,6 @@ DIVIDE : '/';
 MODULE : '%';
 PLUS   : '+';
 MINUS  : '-';
-DIV    : 'DIV';
-MOD    : 'MOD';
 
 EQUAL_SYMBOL: '=';
 GREATER_SYMBOL: '>';

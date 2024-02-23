@@ -14,8 +14,7 @@ erdmlStatements
     ;
 
 erdmlStatement
-    : tableStatement
-    | refStatement
+    : tableStatement | refStatement
     ;
 
 emptyStatement_
@@ -102,7 +101,7 @@ decimal : DECIMAL_LITERAL;
 float : FLOAT_LITERAL;
 exponent : EXPONENT_NUM_LITERAL;
 number
-    : decimal
-    | float 
+    : float 
     | exponent
+    | decimal
     ;
