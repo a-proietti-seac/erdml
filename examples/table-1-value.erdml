@@ -1,4 +1,0 @@
-TABLE product { 
-	id integer,
-	price decimal(10, 2)
-}

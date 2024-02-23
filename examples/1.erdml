@@ -1,0 +1,14 @@
+table a.b.c {
+    d uuid /* hello! */
+}
+
+table e.f.g {
+    h uuid /*
+        this column's type is uuid!
+    */,
+    i varchar(100)
+}
+
+Ref: a.b.c.d <> e.f.g.[h, i] /*
+    "d" references columns [h, i] in the "h" table
+*/

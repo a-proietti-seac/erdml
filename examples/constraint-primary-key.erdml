@@ -1,9 +1,0 @@
-TABLE Users1 { 
-	id uuid,
-	username varchar
-}
-
-TABLE Customers { 
-	id uuid,
-	name varchar
-}

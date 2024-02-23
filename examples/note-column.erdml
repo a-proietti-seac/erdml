@@ -1,3 +1,0 @@
-TABLE Users { 
-	id uuid /* UUID of the current user */
-}

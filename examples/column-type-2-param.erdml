@@ -1,4 +1,0 @@
-TABLE Users { 
-	username varchar,
-	price decimal
-}

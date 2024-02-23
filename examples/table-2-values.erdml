@@ -1,3 +1,0 @@
-TABLE u.Users1 { 
-	id uuid
-}

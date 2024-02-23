@@ -1,3 +1,0 @@
-TABLE Users { 
-	username varchar(16)
-}
