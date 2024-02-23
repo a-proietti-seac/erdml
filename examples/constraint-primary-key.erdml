@@ -1,9 +1,9 @@
 TABLE Users1 { 
-	id uuid [PK],
+	id uuid,
 	username varchar
 }
 
 TABLE Customers { 
-	id uuid [PRIMARY KEY],
+	id uuid,
 	name varchar
 }

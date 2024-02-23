@@ -4,51 +4,75 @@ options {
     caseInsensitive = true;
 }
 
-RelationType: OTM | MTO | OTO | MTM;
-OTM: '<';
-MTO: '>';
-OTO: '-';
-MTM: '<>';
+channels {
+    ERDMLCOMMENT,
+    ERRORCHANNEL
+}
 
-ColumnAttribute:
-    PRIMARY_KEY |
-    NOT_NULL |
-    UNIQUE |
-    C_NOTES
-    ;
-    
-PRIMARY_KEY: 'PRIMARY KEY' | 'PK';
-NOT_NULL: 'NOT NULL';
-UNIQUE: 'UNIQUE';
+TABLE : 'TABLE';
+REF : 'REF' ;
 
-C_NOTES: NOTE COLON (' ')? '"' ~'"'* '"';
+DOT                : '.';
+LR_BRACKET         : '(';
+RR_BRACKET         : ')';
+LR_SBRACKET         : '[';
+RR_SBRACKET         : ']';
+LR_CBRACKET         : '{';
+RR_CBRACKET         : '}';
+COMMA              : ',';
+SEMI               : ';';
+AT_SIGN            : '@';
+ZERO_DECIMAL       : '0';
+ONE_DECIMAL        : '1';
+TWO_DECIMAL        : '2';
+SINGLE_QUOTE_SYMB  : '\'';
+DOUBLE_QUOTE_SYMB  : '"';
+REVERSE_QUOTE_SYMB : '`';
+COLON_SYMB         : ':';
 
-TableAttribute: NOTE;
-NOTE: 'NOTE';
+STAR   : '*';
+DIVIDE : '/';
+MODULE : '%';
+PLUS   : '+';
+MINUS  : '-';
+DIV    : 'DIV';
+MOD    : 'MOD';
 
-TABLE: 'TABLE';
-REF: 'REF';
+EQUAL_SYMBOL: '=';
+GREATER_SYMBOL: '>';
+LESS_SYMBOL: '<';
+EXCLAMATION_SYMBOL: '!';
 
-LCURL: '{';
-RCURL: '}';
+OTM: LESS_SYMBOL;
+MTO: GREATER_SYMBOL;
+OTO: MINUS ;
+MTM: LESS_SYMBOL GREATER_SYMBOL;
 
-LSQUA: '[';
-RSQUA: ']';
+ML_COMMENT: '/*' .*? '*/';
+SL_COMMENT: (('//' [ \t]* | '#') ~[\r\n]* ('\r'? '\n' | EOF) | '//' ('\r'? '\n' | EOF));
 
-LBRAC: '(';
-RBRAC: ')';
+SPACE : [ \t\r\n]+     -> channel(HIDDEN);
+SPEC_ERDML_COMMENT : '/*!' .+? '*/' -> channel(ERDMLCOMMENT);
+COMMENT_INPUT : ML_COMMENT -> channel(HIDDEN);
+LINE_COMMENT : SL_COMMENT -> channel(HIDDEN);
 
-COLON: ':';
-SEMI: ';';
+UNQUOTED: UNQUOTED_LITERAL;
+fragment UNQUOTED_LITERAL : [A-Z_$0-9\u0080-\uFFFF]*? [A-Z_$\u0080-\uFFFF]+? [A-Z_$0-9\u0080-\uFFFF]*;
 
-COMMA: ',';
-DOT: '.';
+STRING_LITERAL: DQUOTA_STRING | SQUOTA_STRING | BQUOTA_STRING;
+fragment DQUOTA_STRING     : '"' ( '\\' . | '""' | ~('"' | '\\'))* '"';
+fragment SQUOTA_STRING     : '\'' ('\\' . | '\'\'' | ~('\'' | '\\'))* '\'';
+fragment BQUOTA_STRING     : '`' ( ~'`' | '``')* '`';
 
-NUMBER: [\-0-9]+;
+DECIMAL_LITERAL : DEC_DIGIT+;
+FLOAT_LITERAL : (DEC_DIGIT+)? DOT DEC_DIGIT+;
+EXPONENT_NUM_LITERAL : EXPONENT_NUM_PART;
+fragment EXPONENT_NUM_PART : DEC_DIGIT+ 'E' [-+]? DEC_DIGIT+;
+fragment HEX_DIGIT : [0-9A-F];
+fragment DEC_DIGIT : [0-9];
 
-STRING:
-    ('"')?[a-z_]+[a-z0-9_]*('"')? |
-    '"' ~'"'* '"'
-    ;
+// fragment BIT_STRING_L      : 'B' '\'' [01]+ '\'';
+// fragment IP_ADDRESS        : [0-9]+ '.' [0-9.]+ | [0-9A-F]* ':' [0-9A-F]* ':' [0-9A-F:]+;
 
-WS     : [ \t\r\n]+ -> skip ;
+// Last tokens must generate Errors
+ERROR_RECONGNIGION: . -> channel(ERRORCHANNEL);
