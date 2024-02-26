@@ -44,6 +44,7 @@ columnTypeAttribute
     ;
 
 // ref    
+
 refStatement
     : REF (refName)? COLON_SYMB
         refFrom
