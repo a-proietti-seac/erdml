@@ -1,14 +1,5 @@
-table a.b.c {
-    d uuid /* hello! */
+table a.b {
+    d uuid(12,2) /*a comment*/
 }
 
-table e.f.g {
-    h uuid /*
-        this column's type is uuid!
-    */,
-    i varchar(100)
-}
-
-Ref: a.b.c.d <> e.f.g.[h, i] /*
-    "d" references columns [h, i] in the "h" table
-*/
+Ref adfasd: a.a <> a.a
