@@ -91,7 +91,7 @@ tableTableId
 
 refCatalogId : (istring '.')? refSchemaId;
 refSchemaId : (istring '.')? refTableId;
-refTableId : (istring '.')? refColumnId;
+refTableId : istring '.' refColumnId;
 refColumnId
     : istringList
     | istring
