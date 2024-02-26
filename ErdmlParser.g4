@@ -53,8 +53,8 @@ refStatement
     ;
     
 refName : istring;
-refFrom : refCatalogId;
-refTo : refCatalogId;
+refFrom : refId;
+refTo : refId;
 
 refId: ((idCatalog DOT )? idSchema DOT )? idTable DOT idColumn;
 
@@ -89,16 +89,6 @@ unquoted : UNQUOTED;
 quoted: STRING_LITERAL;
 istring: unquoted | quoted;
 istringList : LR_SBRACKET unquoted (COMMA istring)* RR_SBRACKET;
-
-
-
-refCatalogId : (istring '.')? refSchemaId;
-refSchemaId : (istring '.')? refTableId;
-refTableId : istring '.' refColumnId;
-refColumnId
-    : istringList
-    | istring
-    ;
 
 decimal : DECIMAL_LITERAL;
 float : FLOAT_LITERAL;
