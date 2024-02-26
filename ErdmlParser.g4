@@ -23,13 +23,13 @@ emptyStatement_
     
 // table
 tableStatement
-    : TABLE tableId (tableNote)? LR_CBRACKET
+    : TABLE tableId (tableComment)? LR_CBRACKET
         columnStatement (COMMA columnStatement)*
     RR_CBRACKET
     ;
 
 tableId : ((idCatalog DOT )? idSchema DOT )? idTable;
-tableNote : multiLineComment;
+tableComment : multiLineComment;
 
 columnStatement : columnName columnType (columnComment)?;
 columnComment : multiLineComment;
