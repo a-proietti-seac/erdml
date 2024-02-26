@@ -44,7 +44,6 @@ columnTypeAttribute
     ;
 
 // ref    
-
 refStatement
     : REF (refName)? COLON_SYMB
         refFrom
@@ -57,7 +56,7 @@ refName : istring;
 refFrom : refId;
 refTo : refId;
 
-refId: ((idCatalog DOT )? idSchema DOT )? idTable DOT idColumn;
+refId: ((idCatalog DOT )? idSchema DOT )? idTable (DOT idColumn | DOT LR_SBRACKET idColumn (COMMA idColumn)* RR_SBRACKET);
 
 refType
     : oneToMany 
