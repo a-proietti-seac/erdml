@@ -23,12 +23,12 @@ emptyStatement_
     
 // table
 tableStatement
-    : TABLE tableName (tableNote)? LR_CBRACKET
+    : TABLE tableId (tableNote)? LR_CBRACKET
         columnStatement (COMMA columnStatement)*
     RR_CBRACKET
     ;
 
-tableName : tableCatalogId;
+tableId : ((idCatalog DOT )? idSchema DOT )? idTable;
 tableNote : multiLineComment;
 
 columnStatement : columnName columnType (columnComment)?;
@@ -56,6 +56,8 @@ refName : istring;
 refFrom : refCatalogId;
 refTo : refCatalogId;
 
+refId: ((idCatalog DOT )? idSchema DOT )? idTable DOT idColumn;
+
 refType
     : oneToMany 
     | manyToOne 
@@ -70,6 +72,11 @@ refComment
 
 // helper types
 
+idCatalog : istring;
+idSchema : istring;
+idTable : istring;
+idColumn : istring;
+
 oneToMany : OTM;
 manyToOne : MTO;
 oneToOne : OTO;
@@ -83,11 +90,7 @@ quoted: STRING_LITERAL;
 istring: unquoted | quoted;
 istringList : LR_SBRACKET unquoted (COMMA istring)* RR_SBRACKET;
 
-tableCatalogId : (istring '.')? tableSchemaId ;
-tableSchemaId : (istring '.')? tableTableId ;
-tableTableId
-    : istring
-    ;
+
 
 refCatalogId : (istring '.')? refSchemaId;
 refSchemaId : (istring '.')? refTableId;
